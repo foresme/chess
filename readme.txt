@@ -6,3 +6,7 @@ Derlemek için:
 Çalıştırırken girdi dosyasının adının argüman olarak verilmesi gerekiyor:
 
 	./chess.out satranc.txt
+	
+	veya
+	
+	chess.out satranc.txt
