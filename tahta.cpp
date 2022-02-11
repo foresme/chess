@@ -1,20 +1,19 @@
 #include "tahta.h"
-#include "dosyaoku.h"
 #include "yardimcifonksiyonlar.h"
 
-#include <iostream>
-using namespace std;
+#include "kale.h"
+#include "piyon.h"
+#include "fil.h"
+#include "at.h"
+#include "vezir.h"
+#include "sah.h"
 
-tahta::tahta()
+tahta::tahta(string *positions)
 {
-    dosyaOku dosyaoku = dosyaOku();
-    string *positions = dosyaoku.oku();
-
     for(int k = 0; k < 64; k++){
-        //cout << positions[k] << endl;
         char tasTipi = positions[k][0];
         char tasRenk = positions[k][1];
-        string pos = yardimciFonksiyonlar().inttoPos(k);
+        string pos = yardimciFonksiyonlar().inttoPos(k); // int degeri a8, b7 gibi satranc karesine donustur
 
         switch (tasTipi) {
         case 'p':
@@ -37,9 +36,6 @@ tahta::tahta()
             break;
         }
     }
-
-    oyna();
-    puanHesabi();
 }
 
 void tahta::tasEkle(string pozisyon, tas *yeniTas)
@@ -47,7 +43,7 @@ void tahta::tasEkle(string pozisyon, tas *yeniTas)
     taslar.insert( pair<string, tas*>(pozisyon, yeniTas) );
 }
 
-double tahta::puanHesabi()
+void tahta::puanHesabi()
 {
     double siyahToplam = 0.0;
     double beyazToplam = 0.0;
@@ -59,11 +55,12 @@ double tahta::puanHesabi()
         }
     }
 
-    cout << "BEYAZ " << beyazToplam << " SİYAH " << siyahToplam << endl;
+    cout << "BEYAZ: " << beyazToplam << " SİYAH: " << siyahToplam << endl;
 }
 
 void tahta::oyna()
 {
+    // tum taslar icin hareket et ve potansiyel kareleri hesapla
     for(auto const& x : taslar){
         x.second->hareket_et(x.first, taslar);
     }

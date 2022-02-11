@@ -11,16 +11,12 @@ class yardimciFonksiyonlar
 public:
     yardimciFonksiyonlar();
 
+    // tahta uzerinde hareket fonksiyonları
     static string inttoPos(int pos);
-    static int postoInt(string pos);
     static string down(string pos);
     static string up(string pos);
     static string right(string pos);
     static string left(string pos);
-    static string solalt(string pos);
-    static string sagalt(string pos);
-    static string solust(string pos);
-    static string sagust(string pos);
 
 };
 

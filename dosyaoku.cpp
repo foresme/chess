@@ -8,13 +8,15 @@ dosyaOku::dosyaOku()
 }
 
 
-string *dosyaOku::oku()
+string *dosyaOku::oku(string fileName)
 {
     string myText;
-    ifstream MyReadFile("satranc.txt");
+    ifstream MyReadFile(fileName);
 
     if(!MyReadFile){
         cout << "DOSYA BULUNAMADI!" << endl;
+        return nullptr;
+
     } else {
 
         // Use a while loop together with the getline() function to read the file line by line

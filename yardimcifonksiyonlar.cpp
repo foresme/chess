@@ -8,6 +8,8 @@ yardimciFonksiyonlar::yardimciFonksiyonlar()
 
 }
 
+// pos = 1 ise b8 dondur
+// pos = 24 ise a5 dondur
 string yardimciFonksiyonlar::inttoPos(int pos)
 {
     char yatayPos = yatay[pos % 8]; // a,b,c,d...
@@ -19,25 +21,6 @@ string yardimciFonksiyonlar::inttoPos(int pos)
     return pozisyon;
 }
 
-int yardimciFonksiyonlar::postoInt(string pos)
-{
-    char yatayP = pos[0];
-    int dikeyP = (pos[1] - '0');
-    int pozisyon = 1;
-
-    for(int k = 0; k < 8; k++){
-        if(yatayP == yatay[k]){
-            pozisyon += k;
-            break;
-        }
-    }
-
-    pozisyon += dikeyP * 8;
-
-    return pozisyon;
-
-
-}
 
 string yardimciFonksiyonlar::down(string pos)
 {
@@ -47,7 +30,7 @@ string yardimciFonksiyonlar::down(string pos)
     char yatayP = pos[0];
     int dikeyP = (pos[1] - '0');
 
-    if(dikeyP == 1){
+    if(dikeyP == 1){ // asagi gidemez
         return "-";
     } else {
         dikeyP -= 1;
@@ -68,7 +51,7 @@ string yardimciFonksiyonlar::up(string pos)
     char yatayP = pos[0];
     int dikeyP = (pos[1] - '0');
 
-    if(dikeyP == 8){
+    if(dikeyP == 8){ // yukari gidemez
         return "-";
     } else {
         dikeyP += 1;
@@ -89,7 +72,7 @@ string yardimciFonksiyonlar::right(string pos)
     char yatayP = pos[0];
     int dikeyP = (pos[1] - '0');
 
-    if(yatayP == 'h'){
+    if(yatayP == 'h'){ // saga gidemez
         return "-";
     } else {
         for(int k = 0; k < 8; k++){
@@ -115,7 +98,7 @@ string yardimciFonksiyonlar::left(string pos)
     char yatayP = pos[0];
     int dikeyP = (pos[1] - '0');
 
-    if(yatayP == 'a'){
+    if(yatayP == 'a'){ // sola gidemez
         return "-";
     } else {
         for(int k = 0; k < 8; k++){
@@ -133,42 +116,3 @@ string yardimciFonksiyonlar::left(string pos)
     }
 }
 
-string yardimciFonksiyonlar::solalt(string pos)
-{
-    if(pos == "-")
-        return "-";
-
-    string position = down(left(pos));
-
-    return position;
-}
-
-string yardimciFonksiyonlar::sagalt(string pos)
-{
-    if(pos == "-")
-        return "-";
-
-    string position = down(right(pos));
-
-    return position;
-}
-
-string yardimciFonksiyonlar::solust(string pos)
-{
-    if(pos == "-")
-        return "-";
-
-    string position = up(left(pos));
-
-    return position;
-}
-
-string yardimciFonksiyonlar::sagust(string pos)
-{
-    if(pos == "-")
-        return "-";
-
-    string position = up(right(pos));
-
-    return position;
-}

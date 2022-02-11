@@ -4,9 +4,8 @@
 #include <iostream>
 using namespace std;
 
-tas::tas(char isim, int puan, char renk)
+tas::tas(int puan, char renk)
 {
-    this->isim = isim;
     this->renk = renk;
     this->puan = puan;
     this->anlik_puan = puan;

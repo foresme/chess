@@ -2,23 +2,22 @@
 #define TAHTA_H
 
 #include <map>
-#include "piyon.h"
-#include "at.h"
-#include "fil.h"
-#include "kale.h"
-#include "sah.h"
-#include "vezir.h"
+#include "tas.h"
+
+#include <iostream>
+using namespace std;
 
 class tahta
 {
 public:
-    tahta();
-    void tasEkle(string pozisyon, tas *yeniTas);
-    double puanHesabi();
-    void oyna();
+    tahta(string *positions); // dosyadan okunan pozisyonlarla satranc tahtasını olustur
+    void puanHesabi(); // oyun sonunda toplam puan hesabı
+    void oyna(); // hangi taslar tehdit altında hesapla
 
 private:
+    // oyundaki tum taslari pozisyonları ile beraber tutmak icin
     map<string, tas*> taslar; // a8 -> piyon, d3 -> kale gibi
+    void tasEkle(string pozisyon, tas *yeniTas); // taslar map'ine pozisyonu ve tasi ekle
 };
 
 #endif // TAHTA_H

@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-kale::kale(char renk) : tas('k', 5, renk)
+kale::kale(char renk) : tas(5, renk)
 {
 
 }
@@ -13,11 +13,11 @@ void kale::hareket_et(string pozisyon, map<string, tas *> tahta)
     std::map<string, tas*>::iterator it;
 
     string pos1 = sol(pozisyon);
-    while(pos1 != "-"){
+    while(pos1 != "-"){         // tahtanin sonuna ulasana kadar sola git
         it = tahta.find(pos1);
-        if(it != tahta.end()){ // karede tas var
+        if(it != tahta.end()){  // karede tas var
             isTehdit(it->second);
-            break;
+            break;              // daha fazla sola gidemez
         }
 
         pos1 = sol(pos1);

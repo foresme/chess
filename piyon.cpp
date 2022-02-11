@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-piyon::piyon(char renk) : tas('p', 1, renk)
+piyon::piyon(char renk) : tas(1, renk)
 {
 }
 
@@ -23,8 +23,8 @@ void piyon::hareket_et(string pozisyon, map<string, tas*> tahta)
     }
 
     it = tahta.find(pos1);
-    if(it != tahta.end()){ // karede tas var
-        isTehdit(it->second);
+    if(it != tahta.end()){      // karede tas var
+        isTehdit(it->second);   // tehdit durumu varsa puani yarila
     }
 
     it = tahta.find(pos2);

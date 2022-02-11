@@ -10,7 +10,7 @@ class dosyaOku
 public:
     dosyaOku();
 
-    string* oku();
+    string* oku(string fileName);
 
 private:
 };

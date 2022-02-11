@@ -9,7 +9,7 @@ using namespace std;
 class tas {
 
 public:
-    tas(char isim, int puan, char renk);
+    tas(int puan, char renk);
 
     virtual void hareket_et(string pozisyon, map<string, tas*> tahta)=0; // hareket edebilecegi kareleri ve tehdit ettigi taslari bul
     void tehdit(); // tehdit altında, puanını yarıla
@@ -18,16 +18,15 @@ public:
     void setAnlik_puan(double newAnlik_puan);
 
     char getRenk() const;
-    bool ayniTakim(char renk);
-    void isTehdit(tas* rakip);
+    bool ayniTakim(char renk); // argumanla renkle ayni takimda miyim?
+    void isTehdit(tas* rakip); // rakip tasla ayni takimda degilse, rakibin puanini yarila
 
-    string sol(string pozisyon);
-    string sag(string pozisyon);
-    string alt(string pozisyon);
-    string ust(string pozisyon);
+    string sol(string pozisyon); // tahtada 1 sola giderse ulasacagi pozisyonu dondur
+    string sag(string pozisyon); // tahtada 1 saga giderse
+    string alt(string pozisyon); // tahtada 1 asagi giderse
+    string ust(string pozisyon); // tahtada 1 yukari giderse
 
 private:
-    string isim; // pb, ks, ab vs.
     char renk;
     int puan;
     double anlik_puan;

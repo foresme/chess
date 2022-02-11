@@ -1,6 +1,6 @@
 #include "sah.h"
 
-sah::sah(char renk) : tas('s', 100, renk)
+sah::sah(char renk) : tas(100, renk)
 {
 
 }
@@ -9,29 +9,23 @@ void sah::hareket_et(string pozisyon, map<string, tas *> tahta)
 {
     std::map<string, tas*>::iterator it;
 
-    string pos1 = sol(pozisyon);
-    string pos2 = sag(pozisyon);
-    string pos3 = ust(pozisyon);
-    string pos4 = alt(pozisyon);
+    string positions[8];
+    positions[0] = ust(pozisyon); // 1 üst
+    positions[1] = alt(pozisyon); // 1 alt
+    positions[2] = sag(pozisyon); // 1 sag
+    positions[3] = sol(pozisyon); // 1 sol
+    positions[4] = ust(sag(pozisyon)); // 1 üst 1 sag
+    positions[5] = ust(sol(pozisyon)); // 1 üst 1 sol
+    positions[6] = alt(sag(pozisyon)); // 1 alt 1 sag
+    positions[7] = alt(sol(pozisyon)); // 1 alt 1 sol
 
-    it = tahta.find(pos1);
-    if(it != tahta.end()){ // karede tas var
-        isTehdit(it->second);
-    }
+    for(int k = 0; k < 8; k++){
 
-    it = tahta.find(pos2);
-    if(it != tahta.end()){ // karede tas var
-        isTehdit(it->second);
-    }
+        it = tahta.find(positions[k]); // karede var olan bir tas var mi?
 
-    it = tahta.find(pos3);
-    if(it != tahta.end()){ // karede tas var
-        isTehdit(it->second);
-    }
-
-    it = tahta.find(pos4);
-    if(it != tahta.end()){ // karede tas var
-        isTehdit(it->second);
+        if(it != tahta.end()){    // karede tas var
+            isTehdit(it->second); // tehdit durumu varsa karedeki tasin puanini yarila
+        }
     }
 
 }
